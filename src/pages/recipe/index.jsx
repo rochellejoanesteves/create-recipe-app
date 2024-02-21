@@ -30,7 +30,14 @@ const Recipe = () => {
       {loading && <p className="loading">Loading...</p>}
       {data && (
         <div>
-          <h3>{data.title}</h3>
+          <h3 className="page-title">{data.title}</h3>
+          <p>Takes {data.cookingTime} to coke.</p>
+          <ul>
+            {data?.ingredients?.map((ingredient, index) => (
+              <li key={index}>{ingredient}</li>
+            ))}
+          </ul>
+          <p className="method">{data.method}</p>
         </div>
       )}
     </div>
