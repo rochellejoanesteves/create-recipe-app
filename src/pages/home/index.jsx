@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import RecipeList from "../../components/recipeList";
 import "./home.scss";
 
 const Home = () => {
@@ -26,12 +27,7 @@ const Home = () => {
     <div className="home">
       {error && <p className="error">Error fetching data...</p>}
       {loading && <p className="loading">Loading...</p>}
-      {recipes &&
-        recipes.map((recipe) => (
-          <div key={recipe.id}>
-            <h2>{recipe.title}</h2>
-          </div>
-        ))}
+      {recipes && <RecipeList recipes={recipes} />}
     </div>
   );
 };
