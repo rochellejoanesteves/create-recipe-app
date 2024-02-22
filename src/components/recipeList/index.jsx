@@ -5,7 +5,7 @@ import "./recipeList.scss";
 const RecipeList = ({ recipes }) => {
   return (
     <div className="recipe-list">
-      {recipes.map((recipe) => (
+      {recipes?.map((recipe) => (
         <div key={recipe.id} className="card">
           <h3>{recipe.title}</h3>
           <p>{recipe.cookingTime} minutes to make</p>
