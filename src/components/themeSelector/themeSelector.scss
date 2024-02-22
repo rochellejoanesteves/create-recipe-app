@@ -1,0 +1,17 @@
+.themeSelector {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-width: 1200px;
+    margin: 20px auto;
+    padding-right: 50px;
+    .theme-button div{
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        margin-left: 15px;
+        border-radius: 50%;
+
+    }
+}
