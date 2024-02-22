@@ -1,33 +1,47 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./create.scss";
 
 const Create = () => {
+  const navigate = useNavigate();
   const [recipe, setRecipe] = useState({
     title: "",
+    ingredients: [],
     method: "",
     cookingTime: "",
-    ingridients: [],
   });
-  const [newIngridients, setNewIngridients] = useState("");
+  const [newIngredients, setNewIngredients] = useState("");
 
   const handleChange = (e) => {
     setRecipe({ ...recipe, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      await fetch("http://localhost:3006/recipes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(recipe),
+      });
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleAdd = () => {
-    const ing = newIngridients.trim();
+    const ing = newIngredients.trim();
 
-    if (ing && !recipe.ingridients.includes(ing)) {
+    if (ing && !recipe.ingredients.includes(ing)) {
       setRecipe({
         ...recipe,
-        ingridients: [...recipe.ingridients, ing],
+        ingredients: [...recipe.ingredients, ing],
       });
     }
-    setNewIngridients("");
+    setNewIngredients("");
   };
 
   return (
@@ -47,13 +61,13 @@ const Create = () => {
         </label>
 
         <label>
-          <span>Recipe Ingridients:</span>
+          <span>Recipe Ingredients:</span>
           <div className="ingredients">
             <input
               type="text"
               id="ingridient"
-              value={newIngridients}
-              onChange={(e) => setNewIngridients(e.target.value)}
+              value={newIngredients}
+              onChange={(e) => setNewIngredients(e.target.value)}
             />
             <button onClick={handleAdd} className="btn">
               Add
@@ -62,7 +76,7 @@ const Create = () => {
         </label>
         <p>
           Current Ingredients:{" "}
-          {recipe.ingridients.map((i) => (
+          {recipe.ingredients.map((i) => (
             <em key={i}>{i}, </em>
           ))}
         </p>
