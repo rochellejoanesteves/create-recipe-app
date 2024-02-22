@@ -5,6 +5,15 @@
     min-width: 1200px;
     margin: 20px auto;
     padding-right: 50px;
+    .mode-toggle {
+        margin-right: auto;
+        padding-left: 50px;
+        .icon {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+    }
     .theme-button div{
         display: inline-block;
         width: 20px;

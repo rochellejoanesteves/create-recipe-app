@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "../../hooks/useTheme";
 import "./create.scss";
 
 const Create = () => {
+  const { mode } = useTheme();
   const navigate = useNavigate();
   const [recipe, setRecipe] = useState({
     title: "",
@@ -45,7 +47,7 @@ const Create = () => {
   };
 
   return (
-    <div className="create">
+    <div className={`create ${mode}`}>
       <h2 className="page-title">Add a New Recipe</h2>
 
       <form onSubmit={handleSubmit}>

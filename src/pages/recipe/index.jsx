@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useTheme } from "../../hooks/useTheme";
 import "./recipe.scss";
 
 const Recipe = () => {
+  const { mode } = useTheme();
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -25,7 +27,7 @@ const Recipe = () => {
   }, []);
 
   return (
-    <div className="recipe">
+    <div className={`recipe ${mode}`}>
       {error && <p className="error">Error fetching recipe...</p>}
       {loading && <p className="loading">Loading...</p>}
       {data && (
